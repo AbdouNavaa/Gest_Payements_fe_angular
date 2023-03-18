@@ -10,6 +10,6 @@ export class EtudService {
   constructor(private http: HttpClient) { }
 
   getNoms() {
-      return this.http.get<IEtud[]>("http://localhost:8080/election/public/etudient")
+      return this.http.get<IEtud[]>("http://localhost:8080/election/public/etudient/all")
   }
 }

@@ -6,7 +6,7 @@
   <div class="spacer"></div>
   <a mat-button routerLink="home">Home</a>
   <a mat-button routerLink="register" *ngIf="localDbService.userRole === 'USER' || 'ADMIN'">Register Etudient</a>
-  <a mat-button  routerLink="info" *ngIf="localDbService.userRole === 'ADMIN'">Plus d`information</a>
+  <a mat-button  routerLink="info" >Plus d`information</a>
   <a mat-button routerLink="login" class="outline" >Login</a>
   <a mat-button routerLink="signup" >Signup</a>
   <a mat-button routerLink="candidats" >Synds</a>
