@@ -1,0 +1,168 @@
+<div class="login-section">
+  <div class="row justify-conent-center">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <mat-card class="example-card">
+            <mat-card-content>
+              <mat-card-title>Registration</mat-card-title>
+
+              <form [formGroup]="RegisterEtudient" (ngSubmit)="onSubmit1()">
+                <ng-container class="col-2">
+                  <mat-stepper [linear]="isLinear" #stepper>
+                    <mat-step [stepControl]="personForm">
+                      <div formArrayName="person" class="mat-mdc-form-field">
+                        <ng-template matStepLabel>Details </ng-template>
+                        <mat-form-field appearance="fill">
+                          <mat-label>Non</mat-label>
+                          <input
+                            matInput
+                            placeholder="Le nom"
+                            formControlName="nom"
+                          />
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                          <mat-label>Votre prenom</mat-label>
+                          <input
+                            matInput
+                            placeholder="Le prenom"
+                            formControlName="prenom"
+                          />
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                          <mat-label>Votre INE</mat-label>
+                          <input
+                            matInput
+                            placeholder="Le numero d`identification"
+                            formControlName="INE"
+                            type="number"
+                          />
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                          <mat-label>Votre date de naissance</mat-label>
+                          <input
+                            matInput
+                            placeholder="Le prenom"
+                            formControlName="date_naissance"
+                            type="date"
+                          />
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                          <mat-label>Email</mat-label>
+                          <input
+                            matInput
+                            placeholder="Votre email"
+                            formControlName="email"
+                          />
+                        </mat-form-field>
+                        <div>
+                          <button
+                            mat-flat-button
+                            color="primary"
+                            matStepperNext
+                          >
+                            Next
+                          </button>
+                        </div>
+                      </div>
+                    </mat-step>
+                    <mat-step [stepControl]="etudeForm" label="Etude">
+                      <div formGroupName="etude">
+                        <mat-form-field appearance="fill">
+                          <mat-label>Etablisement</mat-label>
+                          <select
+                            matNativeControl
+                            formControlName="etablisement"
+                          >
+                            <option
+                              value="{{ faculite }}"
+                              *ngFor="let faculite of faculites"
+                              [value]="faculite"
+                            >
+                              {{ faculite }}
+                            </option>
+                            <option
+                              value="{{ institut }}"
+                              *ngFor="let institut of instituts"
+                              [value]="institut"
+                            >
+                              {{ institut }}
+                            </option>
+                          </select>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                          <mat-label>Niveau</mat-label>
+                          <select matNativeControl formControlName="niveau">
+                            <option
+                              value="{{ niveau }}"
+                              *ngFor="let niveau of Niveau"
+                              [value]="niveau"
+                            >
+                              {{ niveau }}
+                            </option>
+                          </select>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                          <mat-label>Immatriculation</mat-label>
+                          <input
+                            matInput
+                            formControlName="numero_immatriculation"
+                            placeholder="Votre matircule"
+                          />
+                        </mat-form-field>
+                        <div>
+                          <button
+                            mat-flat-button
+                            color="primary"
+                            matStepperPrevious
+                          >
+                            Back
+                          </button>
+                          |
+                          <button
+                            mat-flat-button
+                            color="primary"
+                            matStepperNext
+                            (click)="save()"
+                          >
+                            Save
+                          </button>
+                        </div>
+                      </div>
+                    </mat-step>
+                    <mat-step [stepControl]="contactForm">
+                      <ng-template matStepLabel>Vote</ng-template>
+                      <p>You are now done.</p>
+
+                      <div>
+                        <button
+                          mat-flat-button
+                          color="primary"
+                          matStepperPrevious
+                        >
+                          Back
+                        </button>
+                        |
+                        <button
+                          mat-flat-button
+                          color="accent"
+                          [routerLink]="'/info'"
+                        >
+                          Voter
+                        </button>
+                      </div>
+                    </mat-step>
+                  </mat-stepper>
+                </ng-container>
+              </form>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <button mat-flat-button color="accent" [routerLink]="'/info'">
+          Voter
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

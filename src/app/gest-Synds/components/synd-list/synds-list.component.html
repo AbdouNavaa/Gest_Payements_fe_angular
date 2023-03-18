@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-sm-3">
+    <div *ngFor="let synd of synds; let i = index"
+         class="mt-3">
+      <div>
+        <h2 style="font-style: italic">{{synd.syndicat_nom}}</h2>
+        <h3>{{synd.nombreVote}}</h3>
+        <div class="row">
+          <div class="col-sm-10"
+               style="text-align: center">
+            <button [class]="i == curIndex ? 'btn btn-danger' : 'btn btn-dark'"
+                    style="padding-left: 40%;padding-right: 45%;border-radius: 20px"
+                    (click)="showCand(synd.id, i)"
+            >
+              Candidats
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-sm-9">
+    <app-candidat-list [idSynd] ="idCurSynd"
+                      *ngIf="showCandidats">
+    </app-candidat-list>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="login-section">
+  <div class="row justify-conent-center">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card">
+        <div
+          class="card-header"
+          style="text-align: center; background-color: white"
+        >
+          <h4>Votre Address mail</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="form">
+            <div class="form-group row">
+              <label class="col-md-4">Email</label>
+              <div class="col-md-6">
+                <input
+                  type="email"
+                  class="fill"
+                  [formControlName]="'email'"
+                  autofocus
+                />
+              </div>
+            </div>
+
+            <span class="col-md-6 offset-md-4">
+              <button
+                type="submit"
+                mat-flat-button
+                color="primary"
+                (click)="login()"
+              >
+                Authentifier
+              </button>
+            </span>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
