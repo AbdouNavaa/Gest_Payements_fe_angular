@@ -1,0 +1,24 @@
+<div class="row text-center  mt-3 m-md-2">
+  <div class="col " (click)="Cours()">
+    <mat-card style="height: 130px;" >
+      <h1 class="mt-4" >Courses</h1>
+      <h1 class="fw-bolder fs-1" > {{Courses.length}}</h1>
+    </mat-card>
+  </div>
+
+  <div class="col" (click)="profs()">    <mat-card style="height: 130px;  background-color: sandybrown" ><h1 class="mt-4" > Profs </h1>
+    <h1 class="fw-bolder fs-1"> {{Profs.length}}</h1>
+  </mat-card>
+  </div>
+
+  <div class="col" (click)="matieres()">    <mat-card style="height: 130px;  background-color: #4103ac; color: white"><h1 class="mt-4">Matieres </h1>
+    <h1 class="fw-bolder fs-1"> {{Matieres.length}}</h1>
+  </mat-card>
+  </div>
+  <div class="col" (click)="types()">    <mat-card style="height: 130px;  background-color: #ac5110; color: white"><h1 class="mt-4">Types </h1>
+    <h1 class="fw-bolder fs-1"> {{Types.length}}</h1>
+  </mat-card>
+  </div>
+</div>
+
+<!--<app-cours-list></app-cours-list>-->

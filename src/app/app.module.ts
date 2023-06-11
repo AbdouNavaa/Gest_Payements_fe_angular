@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {  NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -22,34 +22,58 @@ import { LoginComponent } from './auth/login/login.component';
 
 import { SignupComponent } from './auth/signup/signup.component';
 
-import { EtudientFormComponent } from './etudient/etudient-form/etudient-form.component';
-import { EtudientComponent } from './etudient/etudient/etudient.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './admin/home/home.component';
-import { TokenIntercepterService } from './services/token-intercepter.service';
-import { VoteHomePageComponent } from './vote/vote-home-page/vote-home-page.component';
-import { VoteSyndicatComponent } from './vote/vote-syndicat/vote-syndicat.component';
-import { VoteSyndicatSelectComponent } from './vote/vote-syndicat-select/vote-syndicat-select.component';
-import { VoteValideComponent } from './vote/vote-valide/vote-valide.component';
-import { GestSyndModule} from "./gest-Synds/gest-synds.module";
+import { ProfsListComponent } from './components/profs-list/profs-list.component';
+import { ProfDetailComponent } from './components/prof-detail/prof-detail.component';
+import { AddProfComponent } from './components/add-prof/add-prof.component';
+import { AddMatiereComponent } from './components/add-matiere/add-matiere.component';
+import { MatiereDetailComponent } from './components/matiere-detail/matiere-detail.component';
+import { MatieresListComponent } from './components/matieres-list/matieres-list.component';
+import { AddCoursComponent } from './components/add-cours/add-cours.component';
+import { CoursDetailComponent } from './components/cours-detail/cours-detail.component';
+import { CoursListComponent } from './components/cours-list/cours-list.component';
+import { ProfCoursListComponent } from './components/prof-cours-list/prof-cours-list.component';
+import {CourPeriodeComponent} from "./components/cour-periode/cour-periode.component";
+import {SharedModule} from "./common/shared/shared.module";
+import { FilterPipe } from './filter.pipe';
+import { FilterByDatePipe } from './filter-by-date.pipe';
+import { FilterCoursPipe } from './filter-cours.pipe';
+import { AddTypeComponent } from './components/add-type/add-type.component';
+import { TypeDetailComponent } from './components/type-detail/type-detail.component';
+import { TypeListComponent } from './components/type-list/type-list.component';
+import { FilterCPPipe } from './filter-cp.pipe';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EtudientComponent,
-    EtudientFormComponent,
     NavbarComponent,
     LoginComponent,
     HomePageComponent,
     SignupComponent,
-    EtudientComponent,
     HomeComponent,
-    VoteHomePageComponent,
-    VoteSyndicatComponent,
-    VoteSyndicatSelectComponent,
-    VoteValideComponent,
+    ProfsListComponent,
+    ProfDetailComponent,
+    AddProfComponent,
+    AddMatiereComponent,
+    MatiereDetailComponent,
+    MatieresListComponent,
+    AddCoursComponent,
+    CoursDetailComponent,
+    CoursListComponent,
+    ProfCoursListComponent,
+    CourPeriodeComponent,
+    FilterPipe,
+    FilterByDatePipe,
+    FilterCoursPipe,
+    AddTypeComponent,
+    TypeDetailComponent,
+    TypeListComponent,
+    FilterCPPipe,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,9 +90,10 @@ import { GestSyndModule} from "./gest-Synds/gest-synds.module";
     ToastrModule,
     BrowserModule,
     NgxWebstorageModule.forRoot(),
-    GestSyndModule,
+    SharedModule,
+    FormsModule
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenIntercepterService,multi:true}],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

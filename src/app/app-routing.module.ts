@@ -1,32 +1,49 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './admin/home/home.component';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
+import { Routes, RouterModule } from '@angular/router';
 
-import { EtudientFormComponent } from './etudient/etudient-form/etudient-form.component';
-import { EtudientComponent } from './etudient/etudient/etudient.component';
-
-import { HomePageComponent } from './home-page/home-page.component';
-import { VoteHomePageComponent } from './vote/vote-home-page/vote-home-page.component';
-import { VoteSyndicatComponent } from './vote/vote-syndicat/vote-syndicat.component';
-import {CandidatComponent} from "./gest-Synds/components/candida-list/candidats-list.component";
-import {SyndsComponent} from "./gest-Synds/components/synd-list/synds-list.component";
+import {ProfsListComponent} from "./components/profs-list/profs-list.component";
+import {ProfDetailComponent} from "./components/prof-detail/prof-detail.component";
+import {AddProfComponent} from "./components/add-prof/add-prof.component";
+import {MatieresListComponent} from "./components/matieres-list/matieres-list.component";
+import {AddMatiereComponent} from "./components/add-matiere/add-matiere.component";
+import {MatiereDetailComponent} from "./components/matiere-detail/matiere-detail.component";
+import {CoursListComponent} from "./components/cours-list/cours-list.component";
+import {AddCoursComponent} from "./components/add-cours/add-cours.component";
+import {CoursDetailComponent} from "./components/cours-detail/cours-detail.component";
+import {ProfCoursListComponent} from "./components/prof-cours-list/prof-cours-list.component";
+import {CourPeriodeComponent} from "./components/cour-periode/cour-periode.component";
+import {TypeListComponent} from "./components/type-list/type-list.component";
+import {AddTypeComponent} from "./components/add-type/add-type.component";
+import {TypeDetailComponent} from "./components/type-detail/type-detail.component";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
 
 const routes: Routes = [
-  { path: 'register', component: EtudientFormComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'info', component: EtudientComponent },
-  { path: 'home', component: HomePageComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'admin', component: HomeComponent },
-  { path: 'candidats', component: SyndsComponent },
-  { path: 'vote/email', component: VoteHomePageComponent },
-  { path: 'vote/syndicat', component: VoteSyndicatComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'prof-list' },
+
+  { path: 'profs-list', component: ProfsListComponent },
+  { path: 'matieres-list', component: MatieresListComponent },
+  { path: 'cours-list', component: CoursListComponent },
+  { path: 'types-list', component: TypeListComponent },
+  { path: 'cours-periode', component: CourPeriodeComponent },
+  { path: 'DashBoard', component: DashboardComponent },
+
+  { path: 'add-prof', component: AddProfComponent },
+  { path: 'add-matiere', component: AddMatiereComponent },
+  { path: 'add-type', component: AddTypeComponent },
+  { path: 'add-cours', component: AddCoursComponent },
+
+  { path: 'edit-prof/:id', component: ProfDetailComponent },
+  { path: 'edit-matiere/:id', component: MatiereDetailComponent },
+  { path: 'edit-type/:id', component: TypeDetailComponent },
+  { path: 'edit-cours/:id', component: CoursDetailComponent },
+
+  { path: 'cours/prof/:id', component: ProfCoursListComponent }
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+
+export class AppRoutingModule { }

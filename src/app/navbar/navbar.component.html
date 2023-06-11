@@ -1,21 +1,17 @@
-<mat-toolbar class="mat-elevation-z1">
-  <span>
-    <mat-icon>castforeducationicon</mat-icon>
-     Vote</span
-  >
-  <div class="spacer"></div>
-  <a mat-button routerLink="home">Home</a>
-  <a mat-button routerLink="register" *ngIf="localDbService.userRole === 'USER' || 'ADMIN'">Register Etudient</a>
-  <a mat-button  routerLink="info" >Plus d`information</a>
-  <a mat-button routerLink="login" class="outline" >Login</a>
-  <a mat-button routerLink="signup" >Signup</a>
-  <a mat-button routerLink="candidats" >Synds</a>
-  <a mat-button routerLink="login" (click)="LogOut()">logout</a>
-<!--  <a mat-fab disabled aria-label="Example icon button with a heart icon"-->
+<nav class="navbar navbar-expand navbar-dark bg-dark px-3 ">
+  <nav class=" navbar-nav" style="font-size: larger">
+  <a class="nav-item nav-link" style="padding-right: 250px" routerLinkActive="active"  routerLink="DashBoard" >DashBoard</a>
+  <a class="nav-item nav-link" routerLinkActive="active"  routerLink="profs-list">Professeures</a>
+  <a class="nav-item nav-link" routerLinkActive="active"  routerLink="matieres-list">Matieres</a>
+  <a class="nav-item nav-link" routerLinkActive="active"  routerLink="cours-list">Cours</a>
+  <a class="nav-item nav-link" routerLinkActive="active"  routerLink="cours-periode">Cours Periode</a>
 <!--          style="cursor: pointer" (click)="LogOut()">-->
 <!--    <mat-icon style="color: #ABC" >logout</mat-icon>-->
 <!--  </a>-->
 
-</mat-toolbar>
+</nav>
+
+
 
 <!--*ngIf="localDbService.userRole === 'USER'"-->
+</nav>

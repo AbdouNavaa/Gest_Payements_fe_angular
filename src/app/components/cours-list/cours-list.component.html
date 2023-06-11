@@ -1,0 +1,87 @@
+<body>
+
+<div class="container">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">courss List</h2>
+  </div>
+
+  <a class="btn btn-dark" routerLinkActive="active" style="border-radius: 30px; margin-left: 40%; padding-left: 5%;padding-right: 5%" routerLink="/add-cours" >Add cours</a>
+  <div class="container mt-3" >
+  <div class="row">
+    <div class="col-5" style="margin-right: 17%;">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  pb-2 mb-3 ">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search by name or surname">
+    </div>
+    </div>
+    <div class="col">
+    <input class="form-control"  type="date" id="start-date" [(ngModel)]="Deb" name="Deb"
+           (ngModelChange)="getTotal(startDate.value, endDate.value)"   #startDate>
+    </div>
+    <div class="col">
+      <input class="form-control" type="date" id="end-date" [(ngModel)]="Fin"  (ngModelChange)="getTotal(startDate.value, endDate.value)" name="Fin"  #endDate>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" id="total" placeholder="Total" value="{{ total }}" readonly>
+    </div>
+
+    </div>
+  </div>
+  <div class="table-responsive ">
+    <table class="table table-hover ">
+      <thead class="table-dark">
+      <tr>
+        <!-- <th scope="col">Id</th> -->
+        <th scope="col">Matiere</th>
+        <th scope="col">Prof</th>
+        <th scope="col">Date</th>
+        <th scope="col">Deb</th>
+        <th scope="col">Fin</th>
+        <th scope="col">CM</th>
+        <th scope="col">TP</th>
+        <th scope="col">TD</th>
+        <th scope="col">EC.qM</th>
+        <th class="text-center" scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody >
+      <tr *ngFor="let cours of Courses   |filterByDate: Deb: Fin | filterCours:searchTerm;  let i = index ">
+
+        <td>{{cours.matiere?.name}}</td>
+        <td>{{cours.prof?.nom}}</td>
+        <td (click)="sortByDate()" (dblclick)="sortByDateDesc()">{{cours.date | date:'dd/MM/yyyy'}}</td>
+        <td>{{cours.Deb | date:'HH:mm'}}</td>
+        <td>{{cours.Fin | date:'HH:mm'}}</td>
+        <td>{{cours.CM}}</td>
+        <td>{{cours.TP}}</td>
+        <td>{{cours.TD}}</td>
+        <td>{{cours.total.toFixed(2)}}</td>
+        <div class="text-center">
+          <div class="row ">
+            <div class="col-4 " style="padding-left: 30px">
+              <ng-container matColumnDef= "edit">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell >
+                  <button mat-icon-button routerLink="/edit-cours/{{cours._id}} ">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+            </div>
+            <div class="col-2" >
+              <ng-container matColumnDef= "delete ">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell >
+                  <button mat-icon-button (click)="delete(cours._id, i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+            </div>
+          </div>
+
+        </div>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>

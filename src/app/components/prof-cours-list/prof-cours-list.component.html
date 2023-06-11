@@ -1,0 +1,72 @@
+<body>
+
+<div class="container">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">courss List</h2>
+  </div>
+  <a class="btn btn-dark" routerLinkActive="active" style="border-radius: 30px;
+  margin-left: 0%; padding-left: 5%;padding-right: 5%" routerLink="/add-cours" >Add cours</a>
+
+  <div class="container mt-3" style="padding-left: 50%;">
+    <div class="row">
+      <div class="col">
+        <input class="form-control" type="date" [(ngModel)]="Deb" id="start-date"(ngModelChange)="getTotal(startDate.value, endDate.value)" #startDate>
+      </div>
+      <div class="col">
+        <input class="form-control" type="date" [(ngModel)]="Fin" id="end-date"
+               (ngModelChange)="getTotal(startDate.value, endDate.value)" #endDate>
+      </div>
+
+<!--      <div class="col">-->
+<!--        <button  class="form-control btn btn-primary" style="border-radius: 30px;-->
+<!--  margin-left: 0%; padding-left: 5%;padding-right: 5%;font-style: italic"(click)="getTotal(startDate.value, endDate.value)">Total</button>-->
+<!--      </div>-->
+
+      <div class="col">
+        <input type="text" class="form-control" id="total" placeholder="Total" style="width: 80px" value="{{ total.toFixed(2) }}" readonly>
+      </div>
+    </div>
+  </div>
+  <div class="table-responsive">
+
+    <table class="table table-hover">
+      <thead>
+      <tr>
+         <th scope="col">#</th>
+        <th scope="col">Matiere</th>
+        <th scope="col">Prof</th>
+        <th scope="col">Date</th>
+        <th scope="col">Deb</th>
+        <th scope="col">Fin</th>
+        <th scope="col">CM</th>
+        <th scope="col">TP</th>
+        <th scope="col">TD</th>
+        <th scope="col">EC.qM</th>
+        <th class="text-center" scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let cours of courses |filterByDate: Deb: Fin  let i = index; even as isEven">
+        <td>{{i+1}}</td>
+        <td>{{cours.matiere?.name}}</td> <!-- <span *ngIf="isEven">(EVEN)</span>-->
+        <td>{{cours.prof?.nom}} {{cours.prof?.prenom}}</td>
+        <td (click)="sortByDate()" (dblclick)="sortByDateDesc()">{{cours.date | date:'dd/MM/yyyy'}}</td>
+
+        <td>{{cours.Deb | date:'HH:mm'}}</td>
+        <td>{{cours.Fin | date:'HH:mm'}}</td>
+        <td>{{cours.CM}}</td>
+        <td>{{cours.TP}}</td>
+        <td>{{cours.TD}}</td>
+        <td>{{cours.total | number:'1.1-1'}}</td>
+        <td class="text-center">
+          <button class="btn btn-sm " routerLink="/edit-cours/{{cours._id}}" style="border-radius: 30px;
+  margin-left: 0%; padding-left: 32%;padding-right: 32%; margin-bottom: 3px; font-style: italic;background-color: whitesmoke" >Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(cours._id, i)" style="border-radius: 30px;
+  margin-left: 0%; padding-left: 25%;padding-right: 25%;font-style: italic">Delete</button>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</body>

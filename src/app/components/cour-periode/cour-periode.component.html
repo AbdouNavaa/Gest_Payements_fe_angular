@@ -1,0 +1,105 @@
+<head>
+  <style>
+    /*#tr{*/
+    /*  opacity: 0.7;*/
+    /*}*/
+    /*#tr:hover{*/
+    /*  opacity: 1;*/
+    /*  !*background-color: azure;*!*/
+    /*}*/
+  </style>
+</head>
+<body>
+
+<div class="container mt-3" style="padding-left: 45%;">
+  <form [formGroup]="coursListForm"  (ngSubmit)="getCoursList()" #f="ngForm">
+    <div class="row">
+      <div class="col">
+        <label for="dateDeb">Date de début :</label>
+        <input class="form-control" [value]="dateDeb" id="dateDeb" type="date" formControlName="dateDeb" [(ngModel)]="dateDeb">
+
+<!--        <input class="form-control" [value]="coursListForm.value.selectedDate.toString().substr(0,10)" id="dateDeb" type="date" formControlName="dateDeb" [(ngModel)]="selectedDateTime" >-->
+      </div>
+      <div class="col">
+        <label for="dateFin">Date de fin :</label>
+        <input class="form-control" [value]="dateFin" id="dateFin" type="date" formControlName="dateFin" [(ngModel)]="dateFin">
+
+<!--        <input class="form-control" [value]="coursListForm.value.selectedDateFin.toString().substr(0,10)" id="dateFin" type="date" formControlName="dateFin" [(ngModel)]="selectedDateTimeFin" >-->
+      </div>
+      <div class="col-4 mt-4">
+        <button type="submit" class="form-control btn btn-primary"
+                style="border-radius: 30px; margin-left: 0%; padding-left: 5%;padding-right: 5%" [disabled]="!f.valid">Filtrer</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="container mt-3" style="padding-left: 45%;">
+  <form [formGroup]="coursListForm"  (ngSubmit)="getCoursList()">
+    <!-- Le reste du formulaire -->
+  </form>
+</div>
+
+<div class="col mt-3 text-center bg-dark text-light" style="width: 50%; margin-left: 20%;">
+  <h4>Liste des cours entre {{ dateDeb }} et {{ dateFin }}</h4>
+</div>
+
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Nom & Prenom</th>
+    <th>Banque</th>
+    <th>Compte Bancaire</th>
+    <th>Volume Horaire</th>
+    <th>Taux/H</th>
+    <th>Montant (MRU)</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let cours of coursList ;">
+  <tr  id="tr">
+    <td><b>{{ cours.nom }} {{ cours.prenom }}</b></td>
+    <td>{{ cours.Banque }}</td>
+    <td>{{ cours.Compte }}</td>
+    <td>{{ cours.total.toFixed(2) }}</td>
+    <td>{{ cours.Taux }}</td>
+    <td>{{ cours.totalAvecTaux | number:'1.1-1'}}</td>
+
+
+  </tr>
+  <tr class="fw-bolder" id="tr1" style="color: blue">
+    <ng-container *ngIf="cours.nom">
+      <!-- Créer une liste contenant tous les cours ayant le même nom -->
+      <ng-container *ngIf="isMultipleCours(cours)">
+        <td colspan="3" *ngIf="cours.Taux === 900">Total de {{cours.nom}}</td>
+        <!-- Afficher le totalProf et totalP uniquement si Taux = 900 -->
+        <td *ngIf="cours.Taux === 900">{{cours.totalP.toFixed(2)}}</td>
+        <td *ngIf="cours.Taux === 900"></td>
+        <td *ngIf="cours.Taux === 900">{{cours.totalProf | number:'1.0-0'}}</td>
+      </ng-container>
+
+      <!-- Afficher le totalProf et totalP sans condition si le nom n'apparaît qu'une seule fois -->
+      <ng-container *ngIf="hasOneCours(cours)">
+        <td colspan="3" >Total de {{cours.nom}}</td>
+        <td>{{cours.totalP.toFixed(2)}}</td>
+        <td ></td>
+        <td>{{cours.totalProf | number:'1.0-0'}}</td>
+      </ng-container>
+    </ng-container>
+  </tr>
+  </tbody>
+  <tbody>
+    <tr class="fw-bold text-bg-dark">
+      <td colspan="3">Totaux</td>
+      <td>{{ totalAvecHeureSum.toFixed(2) }}</td>
+      <td></td>
+      <td >{{ totalAvecMontantSum | number:'1.0-0' }} MRU</td>
+    </tr>
+  </tbody>
+  </table>
+
+<div class="col mt-3 text-center fw-bolder fst-italic fs-3" *ngIf="!coursList || !coursList.length">
+  Aucun cours trouvé pour la période sélectionnée.
+</div>
+
+</body>

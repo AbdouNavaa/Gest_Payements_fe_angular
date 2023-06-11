@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "election_etudient_front_end": {
+    "gestion_payements_front_end": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/election_etudient_front_end",
+            "outputPath": "dist/gestion_payements_front_end",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "election_etudient_front_end:build:production"
+              "browserTarget": "gestion_payements_front_end:build:production"
             },
             "development": {
-              "browserTarget": "election_etudient_front_end:build:development"
+              "browserTarget": "gestion_payements_front_end:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "election_etudient_front_end:build"
+            "browserTarget": "gestion_payements_front_end:build"
           }
         },
         "test": {

@@ -1,0 +1,61 @@
+<div class="row justify-content-start mt-5 w-auto" style="margin-left: 3px">
+  <div class="col-md-5">
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="form-group col">
+          <label>Matiere</label>
+          <select name="matiere" id="matiere" class="form-control" formControlName="matiere" required>
+            <option *ngFor="let mat of Matieres; let i = index" [value]="mat.name">{{mat.name}}</option>
+          </select>
+        </div>
+        <div class="form-group col">
+          <label>Prof</label>
+          <select name="prof" id="prof" class="form-control" formControlName="prof" required>
+            <option *ngFor="let prof of Profs; let i = index" [value]="prof.nom">{{prof.nom}}</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label>Date</label>
+        <input class="form-control" type="date" formControlName="date" [(ngModel)]="selectedDate" (change)="onChangeDate($event)">
+      </div>
+
+      <div class="row">
+
+      <div class="form-group col-6">
+        <label>Date Deb</label>
+        <input class="form-control" type="datetime-local" formControlName="Deb" [(ngModel)]="selectedDateTime" required>
+      </div>
+
+      <div class="form-group col">
+        <label>Date Fin</label>
+        <input class="form-control" type="datetime-local" formControlName="Fin" [(ngModel)]="selectedDateTimeFin" required>
+      </div>
+      </div>
+
+
+<div class="row">
+
+      <div class="form-group col">
+        <label>CM</label>
+        <input class="form-control" type="tel" formControlName="CM" required>
+      </div>
+      <div class="form-group col">
+        <label>TP</label>
+        <input class="form-control" type="tel" formControlName="TP" required>
+      </div>
+      <div class="form-group col">
+        <label>TD</label>
+        <input class="form-control" type="tel" formControlName="TD" required>
+      </div>
+
+</div>
+
+      <div class="form-group">
+        <button class="btn btn-primary btn-block w-100 mt-3" style="border-radius: 20px" type="submit">Add Cours</button>
+      </div>
+    </form>
+  </div>
+</div>

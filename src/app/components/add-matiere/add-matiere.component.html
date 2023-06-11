@@ -1,0 +1,28 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-md-4">
+    <h1 >Ajouter Matiere</h1>
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()"  #f="ngForm">
+      <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" type="text" formControlName="name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Coef</label>
+        <input class="form-control" type="tel" formControlName="coef" required>
+      </div>
+
+      <div class="form-group">
+        <label>Taux</label>
+        <select name="taux" id="taux" class="form-control" formControlName="taux">
+          <option *ngFor="let type of Types; let i = index" [value]="type.name" >{{type.name}}</option>
+        </select>
+      </div>
+
+<!--      <p>{{f.value | json}}</p>-->
+      <div class="form-group">
+        <button class="btn btn-dark form-control mt-3" type="submit">Add Matiere</button>
+      </div>
+    </form>
+  </div>
+</div>
